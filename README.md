@@ -1,6 +1,6 @@
 # Delete Old ECR Images GitHub Action
 
-This GitHub Action helps you manage your Amazon ECR (Elastic Container Registry) repositories by deleting old images, optionally limiting deletion to untagged images. It allows you to specify parameters such as the repository name, the number of latest images to keep, whether to perform a dry run, and whether to delete only untagged images.
+This GitHub Action helps you manage your Amazon ECR (Elastic Container Registry) repositories by deleting old images, optionally limiting deletion to untagged images. It allows you to specify parameters such as the repository name, the number of latest images to keep, whether to perform a dry run, and whether to delete only untagged images. 
 
 Usage
 -----
