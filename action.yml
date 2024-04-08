@@ -1,4 +1,4 @@
-name: Delete Old ECR Images
+name: ECR Lifecycle Manager
 description: Deletes old images from an Amazon ECR repository, optionally limiting deletion to untagged images.
 author: Agung Widhiatmojo
 branding:
