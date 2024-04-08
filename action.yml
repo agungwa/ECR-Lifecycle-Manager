@@ -1,6 +1,6 @@
 name: Delete Old ECR Images
 description: Deletes old images from an Amazon ECR repository, optionally limiting deletion to untagged images.
-author: Your Name
+author: Agung Widhiatmojo
 inputs:
   repo-name:
     description: 'The name of the ECR repository to delete images from.'
