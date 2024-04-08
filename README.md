@@ -5,15 +5,16 @@ This GitHub Action helps you manage your Amazon ECR (Elastic Container Registry)
 Usage
 -----
 
-yamlCopy code
-
-`- name: Delete old ECR images
+yaml
+```
+- name: Delete old ECR images
   uses: agungwa/ECR-Lifecycle-Manager@v1.0.0
   with:
     repo_name: <your-repository-name>
     num_to_keep: 10
     dry_run: true
     delete_untagged_images: false
+```
 
 Inputs
 ------
@@ -26,15 +27,16 @@ Inputs
 Example
 -------
 
-yamlCopy code
-
-`- name: Delete old ECR images
+yaml
+```
+- name: Delete old ECR images
   uses: agungwa/ECR-Lifecycle-Managers@v1.0.0
   with:
     repo_name: my-ecr-repo
     num_to_keep: 5
     dry_run: false
-    delete_untagged_images: true`
+    delete_untagged_images: true
+```
 
 License
 -------
