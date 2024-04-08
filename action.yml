@@ -21,5 +21,5 @@ inputs:
     required: false
     default: false
 runs:
-  using: 'python'
-  main: 'action.py'
+  using: 'docker'
+  image: 'Dockerfile'
