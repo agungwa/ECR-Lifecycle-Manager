@@ -53,7 +53,7 @@ def delete_old_ecr_images(repository_name, num_to_keep=10, dry_run=True, delete_
                     )
                 deleted_count += 1
                 print(f"{'Would delete' if dry_run else 'Deleted'} tagged image with digest: {image_digest}")
-
+    print(f"Total untagged images that would be deleted in dry run: {deleted_count}")
     return deleted_count
 
 # Replace 'your-repository-name' with your actual ECR repository name
@@ -61,4 +61,3 @@ def delete_old_ecr_images(repository_name, num_to_keep=10, dry_run=True, delete_
 # Set num_to_delete_limit to a specific number if you want to limit the deletion to a certain number of oldest images
 # Set delete_untagged_images=True to delete only the untagged images
 # Set delete_untagged_images=False to delete only the tagged images
-print(f"Total untagged images that would be deleted in dry run: {deleted_count}")
