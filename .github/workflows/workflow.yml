@@ -1,0 +1,14 @@
+name: Delete Old ECR Images
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Run action
+        run: python action.py ${{ github.event.inputs.repo-name }} ${{ github.event.inputs.num-to-keep }} ${{ github.event.inputs.dry_run }} ${{ github.event.inputs.delete_untagged_images }}

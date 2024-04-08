@@ -1,0 +1,22 @@
+name: Delete Old ECR Images
+description: Deletes old images from an Amazon ECR repository, optionally limiting deletion to untagged images.
+author: Your Name
+inputs:
+  repo-name:
+    description: 'The name of the ECR repository to delete images from.'
+    required: true
+  num-to-keep:
+    description: 'The number of latest images to keep.'
+    required: false
+    default: 10
+  dry_run:
+    description: 'Perform a dry run without actually deleting images.'
+    required: false
+    default: true
+  delete_untagged_images:
+    description: 'Delete only untagged images.'
+    required: false
+    default: false
+runs:
+  using: 'python'
+  main: 'action.py'
