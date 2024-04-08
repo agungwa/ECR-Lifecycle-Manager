@@ -9,6 +9,14 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v2\
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.x'
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install boto3
       - name: Run action
         run: python action.py ${{ github.event.inputs.repo-name }} ${{ github.event.inputs.num-to-keep }} ${{ github.event.inputs.dry_run }} ${{ github.event.inputs.delete_untagged_images }}
