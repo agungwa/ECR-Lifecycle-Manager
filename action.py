@@ -2,15 +2,23 @@ import boto3
 import sys
 
 def delete_old_ecr_images(repository_name, num_to_keep=10, dry_run=True, delete_untagged_images=False):
-
+    if len(sys.argv) < 2 or sys.argv[1] == "discover":
+        # Handle the case where 'discover' is passed or there are insufficient arguments
+        # You can set default values or handle the error accordingly
+        print("Continuing without repository_name, num_to_keep, dry_run, and delete_untagged_images.")
+    else:
+        try:
+            repository_name = sys.argv[1]
+            num_to_keep = int(sys.argv[2])
+            dry_run = sys.argv[3].lower() == 'true'
+            delete_untagged_images = sys.argv[4].lower() == 'true'
+        except IndexError:
+            # Handle the case where IndexError occurs due to insufficient arguments
+            print("Insufficient arguments provided.")
+            return
+    print({'repository_name':repository_name, 'num_to_keep':num_to_keep, 'dry_run':dry_run, 'delete_untagged_images':delete_untagged_images})
+    # return True
     ecr = boto3.client('ecr')
-    print({
-        "repository_name":repository_name,
-        "num_to_keep":num_to_keep,
-        "dry_run":dry_run,
-        "delete_untagged_images":delete_untagged_images
-    })
-    return 'true'
     # Counter for deleted images
     deleted_count = 0
 
@@ -63,8 +71,8 @@ def delete_old_ecr_images(repository_name, num_to_keep=10, dry_run=True, delete_
 # Set delete_untagged_images=True to delete only the untagged images
 # Set delete_untagged_images=False to delete only the tagged images
 # Accessing user inputs
-repository_name = sys.argv[1]
-num_to_keep = int(sys.argv[2])
-dry_run = sys.argv[3].lower() == 'true'
-delete_untagged_images = sys.argv[4].lower() == 'true'
-delete_old_ecr_images(repository_name, num_to_keep, dry_run, delete_untagged_images)
+
+if __name__ == "__main__":
+    
+    deleted_count = delete_old_ecr_images('', 10, True, True)
+    print(f"Total images deleted: {deleted_count}")
