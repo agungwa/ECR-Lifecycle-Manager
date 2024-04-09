@@ -2,6 +2,7 @@ FROM python:3.9-slim
 
 RUN pip install boto3
 
-COPY . ./
+COPY . /action
+WORKDIR /action
 
-ENTRYPOINT ["/action.sh"]
+ENTRYPOINT ["/action/action.sh"]
