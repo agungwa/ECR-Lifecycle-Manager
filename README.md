@@ -8,7 +8,7 @@ Usage
 yaml
 ```
 - name: Delete old ECR images
-  uses: agungwa/ECR-Lifecycle-Manager@v1.0.0
+  uses: agungwa/ECR-Lifecycle-Manager@v1.1.0
   with:
     repo_name: <your-repository-name>
     num_to_keep: 10
@@ -30,7 +30,7 @@ Example
 yaml
 ```
 - name: Delete old ECR images
-  uses: agungwa/ECR-Lifecycle-Managers@v1.0.0
+  uses: agungwa/ECR-Lifecycle-Managers@v1.1.0
   with:
     repo_name: my-ecr-repo
     num_to_keep: 5
