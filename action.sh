@@ -12,8 +12,6 @@ param2=$2
 param3=$3
 param4=$4
 
-echo "content of directory"
-ls
 
 # Execute Python script with parameters
-# python action.py "$param1" "$param2" "$param3" "$param4"
+python action.py "$param1" "$param2" "$param3" "$param4"

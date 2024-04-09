@@ -21,10 +21,29 @@ inputs:
     required: false
     default: false
 runs:
-  using: 'docker'
-  image: 'Dockerfile'
-  args:
-    - ${{ inputs.repo_name }}
-    - ${{ inputs.num_to_keep }}
-    - ${{ inputs.dry_run }}
-    - ${{ inputs.delete_untagged_images }}
+  using: 'composite'
+  steps:
+    - name: Set Greeting
+      run: echo "Hello $repo_name."
+      shell: bash
+      env:
+        repo_name: ${{ inputs.repo_name }}
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.x'
+    - name: Install dependencies
+      shell: bash
+      run: |
+        python -m pip install --upgrade pip
+        pip install boto3
+    - name: Run Action
+      shell: bash
+      run: |
+        echo "exec python action $repo_name $num_to_keep $dry_run $delete_untagged_images."
+        python ${{ github.action_path }}/action.py $repo_name $num_to_keep $dry_run $delete_untagged_images
+      env:
+        repo_name: ${{ inputs.repo_name }}
+        num_to_keep: ${{ inputs.num_to_keep }}
+        dry_run: ${{ inputs.dry_run }}
+        delete_untagged_images: ${{ inputs.delete_untagged_images }}
