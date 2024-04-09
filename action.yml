@@ -23,3 +23,8 @@ inputs:
 runs:
   using: 'docker'
   image: 'Dockerfile'
+  args:
+    - ${{ inputs.repo_name }}
+    - ${{ inputs.num_to_keep }}
+    - ${{ inputs.dry_run }}
+    - ${{ inputs.delete_untagged_images }}
