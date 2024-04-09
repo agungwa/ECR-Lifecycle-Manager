@@ -2,14 +2,15 @@ import boto3
 import sys
 
 def delete_old_ecr_images(repository_name, num_to_keep=10, dry_run=True, delete_untagged_images=False):
-    # Accessing user inputs
-    repository_name = sys.argv[1]
-    num_to_keep = int(sys.argv[2])
-    dry_run = sys.argv[3].lower() == 'true'
-    delete_untagged_images = sys.argv[4].lower() == 'true'
 
     ecr = boto3.client('ecr')
-
+    print({
+        "repository_name":repository_name,
+        "num_to_keep":num_to_keep,
+        "dry_run":dry_run,
+        "delete_untagged_images":delete_untagged_images
+    })
+    return 'true'
     # Counter for deleted images
     deleted_count = 0
 
@@ -61,3 +62,9 @@ def delete_old_ecr_images(repository_name, num_to_keep=10, dry_run=True, delete_
 # Set num_to_delete_limit to a specific number if you want to limit the deletion to a certain number of oldest images
 # Set delete_untagged_images=True to delete only the untagged images
 # Set delete_untagged_images=False to delete only the tagged images
+# Accessing user inputs
+repository_name = sys.argv[1]
+num_to_keep = int(sys.argv[2])
+dry_run = sys.argv[3].lower() == 'true'
+delete_untagged_images = sys.argv[4].lower() == 'true'
+delete_old_ecr_images(repository_name, num_to_keep, dry_run, delete_untagged_images)
