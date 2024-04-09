@@ -37,3 +37,13 @@ runs:
       run: |
         python -m pip install --upgrade pip
         pip install boto3
+    - name: Run Action
+      shell: bash
+      run: |
+        echo "exec python action $repo_name $num_to_keep $dry_run $delete_untagged_images."
+        python action $repo_name $num_to_keep $dry_run $delete_untagged_images
+      env:
+        repo_name: ${{ inputs.repo_name }}
+        num_to_keep: ${{ inputs.num_to_keep }}
+        dry_run: ${{ inputs.dry_run }}
+        delete_untagged_images: ${{ inputs.delete_untagged_images }}
