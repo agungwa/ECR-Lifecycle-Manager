@@ -10,8 +10,8 @@ def delete_old_ecr_images(repository_name, num_to_keep=10, dry_run=True, delete_
         try:
             repository_name = sys.argv[1]
             num_to_keep = int(sys.argv[2])
-            dry_run = sys.argv[3].lower() == 'true'
-            delete_untagged_images = sys.argv[4].lower() == 'true'
+            dry_run = sys.argv[3].lower() == 'true' if len(sys.argv) > 3 else True  # Default value: True if not provided
+            delete_untagged_images = sys.argv[4].lower() == 'true' if len(sys.argv) > 4 else False  # Default value: False if not provided
         except IndexError:
             # Handle the case where IndexError occurs due to insufficient arguments
             print("Insufficient arguments provided.")
